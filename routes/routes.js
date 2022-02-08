@@ -5,8 +5,10 @@ const path = require('path');
 module.exports = app => {
 
     // notes variable
-    fs.readFile("db/db.json", "utf8", (err, data) => {
-        if (err) throw err;
+    fs.readFile('./db/db.json', "utf8", (err, data) => {
+        if (err) {
+            return console.log(err);
+        }
         var notes = JSON.parse(data);
 
        // api/notes get route
@@ -38,12 +40,12 @@ module.exports = app => {
 
        // display notes.html
         app.get('/notes', function (req, res) {
-            res.sendFile(path.join(__dirname, "../public/notes.html"));
+            res.sendFile(path.join(__dirname, "./Develop/public/notes.html"));
         });
 
         // display index.html 
         app.get('*', function (req, res) {
-            res.sendFile(path.join(__dirname, "../public/index.html"));
+            res.sendFile(path.join(__dirname, "./Develop/public/index/html"));
         });
 
         //updates the json file when a note is added or deleted
